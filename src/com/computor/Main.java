@@ -87,18 +87,18 @@ public class Main
             System.out.print("Invalid equation.");
             System.exit(0);
         }
-        String sideString  = side.equals("LHS") ? split[0] : split[1];
+        String sideString  = side.equals("LHS") ? split[0].trim(): split[1].trim();
         ArrayList<Integer> signs = getSigns(sideString);
         String[] tempTerms = sideString.split("\\+|-");
         boolean firstTermSign = tempTerms.length == signs.size();
-        if (tempTerms.length < signs.size())
+        if (sideString.charAt(sideString.length() - 1) == '+' || sideString.charAt(sideString.length() - 1) =='-')
         {
             System.out.println("Cant solve equation. Too many Signs detected");
             System.exit(0);
         }
         for (int index = 0; index < tempTerms.length; index++)
         {
-            if (index == 0 && tempTerms[index].equals(" "))
+            if (index == 0 && tempTerms[index].equals(""))
                 continue;
             if (isValidTerm(tempTerms[index]))
             {
